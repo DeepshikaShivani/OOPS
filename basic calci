@@ -1,42 +1,32 @@
-#include<iostream>
-#include <string>
-#include <stack>
-#include <cctype>
+#include <iostream>
 using namespace std;
-int calculate(string s) {
-    stack<int> operands;
-    int num = 0;
-    int result = 0;
-    int sign = 1;
-    for (char c : s) {
-        if (isdigit(c)) {
-            num = num * 10 + (c - '0');
-        } else if (c == '+') {
-            result += sign * num;
-            num = 0;
-            sign = 1;
-        } else if (c == '-') {
-            result += sign * num;
-            num = 0;
-            sign = -1;
-        } else if (c == '(') {
-            operands.push(result);
-            operands.push(sign);
-            result = 0;
-            sign = 1;
-        } else if (c == ')') {
-            result += sign * num;
-            num = 0;
-            result *= operands.top(); operands.pop();
-            result += operands.top(); operands.pop();
-        }
-    }
-    result += sign * num;
-    return result;
-}
 int main() {
-    string s = "10-9";
-    int result = calculate(s);
-    cout << "Result: " << result << endl;
+    char op;
+    double num1, num2;
+    cout << "Enter operator (+, -, *, /): ";
+    cin >> op;
+    cout << "Enter two numbers: ";
+    cin >> num1 >> num2;
+    switch(op) {
+        case '+':
+            cout << num1 << " + " << num2 << " = " << num1 + num2;
+            break;
+        case '-':
+            cout << num1 << " - " << num2 << " = " << num1 - num2;
+            break;
+        case '*':
+            cout << num1 << " * " << num2 << " = " << num1 * num2;
+            break;
+        case '/':
+            if (num2 != 0)
+                cout << num1 << " / " << num2 << " = " << num1 / num2;
+            else
+                cout << "Error! Division by zero!";
+            break;
+        default:
+            cout << "Error! Invalid operator";
+            break;
+    }
+
     return 0;
 }
