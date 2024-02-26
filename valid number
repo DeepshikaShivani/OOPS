@@ -26,7 +26,7 @@ bool isNumber(string s) {
     }
     if (isNumeric && i < n && (s[i] == 'e' || s[i] == 'E')) {
         i++;
-        isNumeric = false; // Reset isNumeric flag
+        isNumeric = false;
         if (i < n && (s[i] == '+' || s[i] == '-')) {
             i++;
         }
